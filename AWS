@@ -1,0 +1,201 @@
+How do you get automatic Notification if your bill goes over $1000 ?
+- You get alarm using "Cloud Watch"
+- You go to cloud watch and create "Billing Alarm"
+- Billing Alarm uses SNS Topic
+- SNS Topic is a way of emaittps://crontab.guling you when
+  your bill goes above $1000
+
+IAM - Identity Access Management 
+ - IAM allows you to create users,
+ - it allows you to create groups
+ - and it allows you to create roles.
+ - And basically it's a way of you being able
+ - to give access to AWS to your different users and groups.
+
+IAM Credential Reports
+ - you can generate and download a credential report that lists
+ - all of the users in your account in terms of what it show in terms of
+ - passwords.
+ - It will show whether a password is enabled when the password was last used when
+ - it was last changed and when it must next be changed similarly with access
+ - keys, which is basically like a password
+
+What is S3? 
+ - S3 stands for simple storage service.
+ - It's a place to put your flat files. So things like videos,
+ - things like text files, things like pictures,
+ - basically any kind of flat file can be stored.
+ - So you couldn't store a database file on S3 because database file is always
+ - changing, but if it's a flat file, like a picture or a video, for example,
+ - that's been already been encoded, then it is a perfect candidate for S3.
+ 
+What is S3 bucket?
+ - A bucket is a folder in the cloud and buckets
+ - basically share a universal namespace.
+ - And that just means that their name must be unique globally.(Like IP Address)
+ - you're always going to receive a HTTP 200 code if the upload was
+ - successful. 
+ - So S3 is a key value store.
+ - You've got a key, which is the file name, and then the value,
+ - which is the actual data.
+ 
+How does data consistency for S3 work?
+ - So we have two things.
+ - We have a read after write consistency for puts of new objects,
+ - and then we have eventual consistency for overwrite puts and deletes and this
+ - can take some time to propagate.
+
+What is "read after write consistency for puts of new objects" ?
+ - If you are writing a new file,
+ - which is basically you're putting a new file into S3 and then
+ - you read it immediately , you will be able to view that data.
+ - So if I upload a file, that's just says, hello, cloud gurus.TXT.
+ - Soon as I upload that, I'll immediately be able to read that data.
+ - So that's puts of new objects.
+
+What is "eventual consistency for overwrite puts and deletes" ?
+ - So if I upload a new file called hello, cloud gurus,
+ - and in it I made changes say, hello, cloud gurus two,
+ - and then I immediately access that, then
+ - I might be reading the new file or I might be reading the old file.
+ - And the reason for that is it can take some time for objects to propagate
+ - amongst S3. Likewise,
+ - if I delete a file and then try and read it immediately afterwards,
+ - I still may be able to access that file.
+
+What are the different S3 storage classes ?
+ - S3 standard
+ - S3 infrequently accessed
+ - S3 zone, infrequently access.
+    -- So this is where you want a lower cost solution and you don't need multiple
+    -- availability zones.
+ - S3, intelligent tiering
+    -- uses machine learning to move your data around the different storage
+    -- classes
+ - S3 Glacier 
+    -- This is a secure, durable,
+    -- low cost storage class for data archiving and your retrieval times are
+    -- always configurable between minutes
+ - Glacier Deep Archive,
+    -- Here the retrieval time of 12 hours is acceptable.
+    
+What is S3 versioning?
+ - This basically allows you to
+ - keep multiple variants of an object in the same bucket.
+ - You can preserve versions too.
+ - You can use versioning to preserve,
+ - retrieve and restore different versions of your bucket.
+ 
+What is CloudFront?
+ - CloudFront is Amazon's content delivery network or CDN,
+ - and a content delivery network is a system of distributed servers or network
+ - that delivers webpages and other web content to a user based on their
+ - geographical locations of the user.
+ 
+How does the content is dilivered without CDN ? 
+ - So let's say we've got a file server.
+ - It's sitting in London and it has a video file on it and let's say that file is
+ - about one or two gigs in size. So it's quite a large file.
+ - I've got our users from all over the world from North America, South America,
+ - South Africa, Australia,
+ - and India and they want to watch this video and the way they do it is they
+ - connect into London and they pull that video down and it can take an awful lot
+ - of time depending on where they are, depending on their connection speeds
+ - and it can be quite a slow process.
+ - So we have these things called CDN networks and they make the whole process a
+ - lot faster.
+ 
+To understand the working of CDN , we need to know
+ - Edge locations : there's always more edge locations
+   than there are regions and this is basically the location where content will be
+   cached.So this is where we cache our content and this is separate to an AWS region
+   or availability zone. 
+   
+ - Origin : This is the origin of all the files that the CDN will distribute.
+   So this normally will be an S3 bucket,
+   but it could also be an EC2 instance or an elastic load balancer,
+   or even Route 53. 
+   
+ - Distributions : This is actually the name given to the
+   CDN, which consists of a collection of edge locations.
+   
+How CloudFront or ContentDeliveryNetwork Work ?
+ - We've got our origin, which is our S3 bucket,
+ - and that's where our files are sitting.
+ - So that's where our large video files of over a gig in size.
+ - We then have our users spread all over the world. Now,
+ - if CloudFront is turned on, this is what happens.
+ - Our users will first query the edge location and they will basically say,
+ - Hey, do you have a copy of this file? I really, really want to watch this video,
+ - but it's about a gig in size. Now, the edge locations,
+ - because this is the first user that's ever queried that a file,
+ - the edge locations will not have a copy.
+ - And what they'll do is they'll connect to the origin and they'll download the
+ - file to the edge location and the edge of the file is stored at that
+ - edge location and is then streamed to the user.
+ - Then when a second user comes in and queries the same file,
+ - that file is already cached at the edge location and that
+ - second user doesn't have to then download it from the origin.
+ - It doesn't have to then be downloaded from the S3 bucket in London.
+ - They can actually get it from an edge location nearest them.
+ - So in America or in South South America or South Africa or Australia,
+ - or in India or Singapore, APAC region, et cetera, et cetera.
+ - So that's how CloudFront and CDNs work.
+ - The first user is always going get that added latency.
+ - And the file is cached for a number of a length of time called TTL which is 48 hours
+ 
+What is RDS?
+ - Relational Databases on AWS is called RDS.
+ - You can deploy your RDS instance across
+ - multiple Availability Zones.
+ - This is designed for Disaster Recovery.
+ 
+What is Read Replicas in AWS ?
+ - Read Replicas are literally copies
+ - of your production database.
+ - And, basically, you send your EC2 instances
+ - to read traffic from your Read Replicas
+ - rather than from your production database
+ - because performing write on a database freezes the database for some time,
+ - so that it doesn't have a performance hit.
+ - So, Read Replicas are for performance
+ - and Multi-AvailablityZone is for Disaster Recovery. 
+
+What is DynamoDB ?
+ - This is Amazon's NoSQL solution. So if you have
+   a NoSQL requirement, you want to use DynamoDB.
+  
+What is Redshift ?
+ - Redshift is Amazon's Data Warehousing solution.
+ - This is used for Online Analytics Processing
+ - and this is basically if you got Business Intelligence tools
+ - or you've got management wanting to make
+ - really complex queries.
+ - You want them to be querying Redshift,
+ - you don't want them to be querying RDS,
+ - so, you don't want them to be querying MySQL
+ - or MariaDB or PostgreSQL.
+ 
+What is Route53 ?
+ - It is Amazon's DNS service.
+ - DNS works on port 53
+ - with the Route 53,you can use it to direct traffic all around the world. 
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+ 
