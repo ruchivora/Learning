@@ -1,9 +1,33 @@
+What is a Cluster in AWS?
+ - A computer cluster is a set of computers that work together 
+ - so that they can be viewed as a single system.  
+
 How do you get automatic Notification if your bill goes over $1000 ?
-- You get alarm using "Cloud Watch"
-- You go to cloud watch and create "Billing Alarm"
-- Billing Alarm uses SNS Topic
-- SNS Topic is a way of emaittps://crontab.guling you when
-  your bill goes above $1000
+ - You get alarm using "Cloud Watch"
+ - You go to cloud watch and create "Billing Alarm"
+ - Billing Alarm uses SNS Topic
+ - SNS Topic is a way of emaittps://crontab.guling you when
+   your bill goes above $1000
+   
+What is CloudWatch ?
+ - CloudWatch is a monitoring service to monitor your AWS 
+ - resources as well as the applications that you run on AWS.
+What is AWS Systems Manager?
+ - when you have multiple EC2 instances
+ - it's called an EC2 fleet.
+ - And when you want to perform some update 
+ - on these many EC2 instances ,
+ - You can imagine SSHing into each
+ - individual EC2 instance and just running an update.
+ - It's going to take you an awful lot of time.
+ - So AWS created AWS Systems Manager
+ - When you deploy an EC2 instance,
+ - you install a piece of software on it.
+ - And the software connects that EC2 instance
+ - to Systems Manager.
+ - And then you can use Systems Manager to
+ - do a run command, so you could run a command
+ - across all your EC2 instances at once.
 
 IAM - Identity Access Management 
  - IAM allows you to create users,
@@ -179,7 +203,48 @@ What is Redshift ?
 What is Route53 ?
  - It is Amazon's DNS service.
  - DNS works on port 53
- - with the Route 53,you can use it to direct traffic all around the world. 
+ - with the Route 53,you can use it to direct traffic 
+ - all around the world.
+ 
+What is ElasticBeanStalk ?
+ - with Elastic Beanstalk you can quickly deploy
+ - and manage applications in the AWS cloud. 
+ - without worrying about the infrastructure
+ - that runs those applications.
+ - You simply upload your application and 
+ - Elastic Beanstalk will automatically handle 
+ - the details of capacity provisioning,
+ - load balancing, scaling, application helth monitoring
+ - All you give Elastic Beanstalk is some code, and then it will
+ - provision the infrastructure underneath, you need not worry about it
+ - However , ElasticBeanstalk ideally should be used 
+ - only for development and not for deployment 
+ 
+What is AWS CloudFormation ?
+ - It's a service that helps you model
+ - and set up your AWS resources
+ - so that you can spend less time managing those resources
+ - and more time focusing on your applications that run in AWS.
+ - And you create a template
+ - that describes all the AWS resources that you want.
+ - So this can be things like EC2 instances, 
+ - RDS instances, etc
+ - And AWS cloud formation takes care of the provisioning
+ - and configuration or configuring of those resources for you.
+ - You don't need to individually go in
+ - and create and configure your AWS resources
+ - Eg : It is as good as , you just define the set of rules
+ - that you want 2 CPU with processing speed , 4 GB RAM etc
+ - and CloudFormation will allocate those rsources.
+ 
+Note : 
+    - Elastic Beanstalk, and CloudFormation are both free services.
+    - However, just remember that the resources
+    - that they provision such as EC two instances
+    - or IDs instances etc, are not free.
+ 
+
+ 
 
 
 
